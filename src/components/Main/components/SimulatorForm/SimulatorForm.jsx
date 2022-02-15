@@ -20,7 +20,7 @@ export default function SimulatorForm(props) {
 
     const getInvestResult = (e) => {
         e.preventDefault();
-
+        //asdd
         fetch('http://localhost:3000/simulacoes')
             .then(res => res.blob())
             .then(res => res.text())

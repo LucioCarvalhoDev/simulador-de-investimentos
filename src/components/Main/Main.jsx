@@ -11,15 +11,16 @@ export default function Main(props) {
     return (
         <StyledMain className="m">
             <SimulatorForm setInvestmentData={setInvestmentData}></SimulatorForm>
-            <SimuladorResults investimentData={investmentData}></SimuladorResults>
+            <SimuladorResults investmentData={investmentData}></SimuladorResults>
         </StyledMain>
     );
 }
 
 const StyledMain = styled.main`
+    box-sizing: border-box;
     display: grid;
-    grid-template-columns: 45% 55%;
-    grid-gap: 1rem;
+    grid-template-columns: 43% 53%;
+    column-gap: 4%;
     background: #efefef;
     padding: 1rem;
 
