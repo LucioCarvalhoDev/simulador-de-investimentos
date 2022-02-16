@@ -11,7 +11,10 @@ export default function Main(props) {
     return (
         <StyledMain className="m">
             <SimulatorForm setInvestmentData={setInvestmentData}></SimulatorForm>
-            <SimuladorResults investmentData={investmentData}></SimuladorResults>
+
+            {investmentData.length != 0 &&
+                <SimuladorResults investmentData={investmentData}></SimuladorResults>
+            }
         </StyledMain>
     );
 }
@@ -26,6 +29,8 @@ const StyledMain = styled.main`
 
     @media(max-width: 943px) {
         grid-template-columns: 100%;
-        grid-template-rows: 1fr 1fr;
+        row-gap: 2rem;
+        
     }
+
 `;

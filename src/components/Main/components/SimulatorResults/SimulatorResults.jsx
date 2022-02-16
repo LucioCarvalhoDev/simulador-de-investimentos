@@ -16,6 +16,7 @@ export default function SimuladorResults(props) {
 }
 
 const Grid = styled.div`
+    max-width: 100%;
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
@@ -24,6 +25,11 @@ const Grid = styled.div`
         "bars";
     grid-template-rows: 2rem 165px 1fr;
     row-gap: 5px;
+    
+    @media(max-width: 943px) {
+        grid-template-rows: 2rem 1fr 1fr;
+        row-gap: 1rem;
+    }
 `;
 
 const StyledTitle = styled.h3`

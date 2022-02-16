@@ -34,14 +34,14 @@ export default function BarsChart(props) {
 
         state.datasets = [];
         state.datasets.push({
-            label: 'Com Aporte',
-            data: valuesWithContribution.map(step => step.value),
-            backgroundColor: 'tomato',
-        });
-        state.datasets.push({
             label: 'Sem Aporte',
             data: valuesWithoutContribution.map(step => step.value),
             backgroundColor: 'black',
+        });
+        state.datasets.push({
+            label: 'Com Aporte',
+            data: valuesWithContribution.map(step => step.value),
+            backgroundColor: 'tomato',
         });
     }
 
@@ -50,6 +50,8 @@ export default function BarsChart(props) {
         <>
             <Container>
                 <Bar
+                    width={100}
+                    height={50}
                     data={state}
                     options={{
                         title: {
@@ -58,10 +60,27 @@ export default function BarsChart(props) {
                             fontSize: 20
                         },
                         legend: {
-                            display: true,
+                            display: false,
                             position: 'bottom'
                         },
-                        barValueSpacing: 20,
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false,
+                                },
+                                stacked: true,
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                },
+                                ticks: {
+                                    display: false,
+                                },
+                                display: false,
+                            }
+                        }
+
                     }}
                 />
             </Container>
