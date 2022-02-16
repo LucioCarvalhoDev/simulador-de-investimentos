@@ -18,6 +18,11 @@ export default function SimuladorResults(props) {
 const Container = styled.div`
     display: grid;
     grid-template-areas: "title" "content";
+    grid-template-rows: 2rem 1fr;
+
+    @media(max-width: 300px) {
+        grid-template-rows: 3.5rem 1fr;
+    }
 `;
 
 const Grid = styled.div`
@@ -35,6 +40,5 @@ const Grid = styled.div`
 
 const StyledTitle = styled.h3`
     font-size: 1.25rem;
-    grid-area: title;
     margin-bottom: 1rem;
 `;

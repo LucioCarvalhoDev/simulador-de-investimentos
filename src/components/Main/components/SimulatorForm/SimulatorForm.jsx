@@ -69,6 +69,7 @@ export default function SimulatorForm(props) {
 const Container = styled.div`
     display: grid;
     grid-template-areas: "title" "form";
+    grid-template-rows: 2rem 1fr;
 `;
 
 const StyledForm = styled.form`
