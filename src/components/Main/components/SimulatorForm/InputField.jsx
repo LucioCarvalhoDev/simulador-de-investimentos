@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+// validações para cada tipo escalaveis
 const VALIDATIONS = new Map([
-    [undefined, (value) => true],
+    [undefined, () => true],
     ['number', (value) => !isNaN(Number(value))]
 ]);
 
 export default function InputField(props) {
+
     const [isValid, setIsValid] = useState(true);
 
     const validate = (e) => {
@@ -17,23 +19,29 @@ export default function InputField(props) {
 
     };
 
+    const inputId = props.label.replaceAll(' ', '-');
+
     return (
 
+
         <Field isValid={isValid}>
-            <Label isValid={isValid}>{props.label}</Label>
+            <Label
+                htmlFor={inputId}
+                isValid={isValid}>{props.label}</Label>
             <InputArea isValid={isValid}>
-                <span>{props.prefix || ''}</span><input onChange={validate} type="text" defaultValue={props.value || ''} />
+                <Prefix>{props.prefix || ''}</Prefix>
+                <input
+                    type="text"
+                    id={inputId}
+                    onChange={validate}
+                    defaultValue={props.value || ''}
+                />
             </InputArea>
-            <ErrorLabel isValid={isValid}>{props.errorMsg || ''}</ErrorLabel>
+            <ErrorLabel
+                htmlFor={inputId} isValid={isValid}>{props.errorMsg || ''}</ErrorLabel>
         </Field>
     );
 }
-
-const Container = styled.div`
-display: flex;
-    width: 100%;
-    height: 100%;
-`;
 
 const Field = styled.div`
     width: 100%;
@@ -45,19 +53,22 @@ const Label = styled.label`
     font-size: .85rem;
     display: block;
     margin-bottom: .8rem;
-    `;
+`;
+
+const Prefix = styled.span`
+    display: flex;
+    align-items: end;
+    font-size: 1rem;
+`;
 
 const InputArea = styled.div`
-    display: grid;
-    grid-template-areas:
-        "a b"
-    ;
+    display: flex;
     padding-bottom: 10px;
     margin-bottom: 5px;
     border-bottom: 1px solid ${props => props.isValid ? 'black' : 'red'};
     & > input {
-        background-color: transparent;
         font-size: 1rem;
+        background-color: transparent;
         border: none;
         outline: none;
         margin-left: 5px;

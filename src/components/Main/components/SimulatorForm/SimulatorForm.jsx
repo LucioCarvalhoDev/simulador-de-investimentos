@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ButtonRatio from "./ButtonRatio.jsx";
 import InputField from "./InputField.jsx";
@@ -8,19 +8,21 @@ export default function SimulatorForm(props) {
 
     // Inicia IPCA e CDI
     const [indicators, setIndicators] = useState([]);
-    if (indicators.length == 0) {
-        fetch('http://localhost:3000/indicadores')
-            .then(res => res.blob())
-            .then(res => res.text())
-            .then(rawData => {
-                rawData = JSON.parse(rawData);
-                setIndicators([rawData[1].valor, rawData[0].valor]);
-            });
-    }
+    useEffect(() => {
+        if (indicators.length == 0) {
+            fetch('http://localhost:3000/indicadores')
+                .then(res => res.blob())
+                .then(res => res.text())
+                .then(rawData => {
+                    rawData = JSON.parse(rawData);
+                    setIndicators([rawData[1].valor + '%', rawData[0].valor + '%']);
+                });
+        }
+    }, []);
 
+    // submit do form
     const getInvestResult = (e) => {
         e.preventDefault();
-        //asdd
         fetch('http://localhost:3000/simulacoes')
             .then(res => res.blob())
             .then(res => res.text())
@@ -56,7 +58,7 @@ export default function SimulatorForm(props) {
                     <InputField label="CDI (ao ano)" value={indicators[1]}></InputField>
                 </Row>
                 <StyledFooter>
-                    <ButtonTrans>Limpar campos</ButtonTrans>
+                    <ButtonTrans type="reset">Limpar campos</ButtonTrans>
                     <ButtonSolid onClick={getInvestResult}>Simular</ButtonSolid>
                 </StyledFooter>
             </StyledForm>
@@ -67,22 +69,15 @@ export default function SimulatorForm(props) {
 const Container = styled.div`
     display: grid;
     grid-template-areas: "title" "form";
-    grid-template-rows: 2rem 1fr;
 `;
 
 const StyledForm = styled.form`
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr) 3rem;
     row-gap: 1rem;
     margin-bottom: 20px;
-
-    @media(max-width: 420px) {
-        row-gap: 10px;
-    }
-
-
 `;
 
 const Row = styled.div`

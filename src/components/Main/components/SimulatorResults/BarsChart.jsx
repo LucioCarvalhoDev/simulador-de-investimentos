@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
 import { BarController, BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
@@ -6,8 +5,6 @@ Chart.register(BarController, CategoryScale, LinearScale, BarElement);
 
 
 export default function BarsChart(props) {
-
-
 
     const state = {
         labels: [],
@@ -21,6 +18,7 @@ export default function BarsChart(props) {
         ]
     };
 
+    // prepara dados para o grafico caso possivel
     if (props.data != undefined) {
         const valuesWithContribution = Object
             .values(props.data?.graficoValores.comAporte)
@@ -41,7 +39,7 @@ export default function BarsChart(props) {
         state.datasets.push({
             label: 'Com Aporte',
             data: valuesWithContribution.map(step => step.value),
-            backgroundColor: 'tomato',
+            backgroundColor: '#ed8e53',
         });
     }
 
@@ -90,11 +88,5 @@ export default function BarsChart(props) {
 }
 
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
-`;
 
-const StyledCanvas = styled.canvas`
-    width: 100%;
-    height: 100%;
 `;
