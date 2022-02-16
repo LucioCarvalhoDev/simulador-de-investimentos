@@ -36,7 +36,6 @@ export default function ButtonRatio(props) {
 }
 
 const Container = styled.div`
-    
 `;
 
 const TitleArea = styled.div`

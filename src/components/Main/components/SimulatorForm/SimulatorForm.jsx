@@ -28,49 +28,57 @@ export default function SimulatorForm(props) {
     };
 
     return (
-        <StyledForm>
+        <Container>
             <StyledTitle>Simulador</StyledTitle>
-            <Row>
-                <ButtonRatio
-                    name="rendimento"
-                    options={['bruto', 'líquido']}
-                    info="O rendimento bruto são os ganhos totais da aplicação, enquanto que o rendimento líquido é esse montante menos as taxas e impostos sobre ele."
-                ></ButtonRatio>
-                <ButtonRatio
-                    name="tipo-de-indexação"
-                    options={['PRÉ', 'POS', 'FIXADO']}
-                    info="Num rendimento prefixado o retorno já é conhecido, no pos depende de uma variavel."
-                ></ButtonRatio>
-            </Row>
-            <Row>
-                <InputField label="Aporte Inicial" sufix="R$"></InputField>
-                <InputField label="Aporte Mensal" sufix="R$"></InputField>
-            </Row>
-            <Row>
-                <InputField label="Prazo (em meses)"></InputField>
-                <InputField label="Rentabilidade"></InputField>
-            </Row>
-            <Row>
-                <InputField label="IPCA (ao ano)" value={indicators[0]}></InputField>
-                <InputField label="CDI (ao ano)" value={indicators[1]}></InputField>
-            </Row>
-            <StyledFooter>
-                <ButtonTrans>Limpar campos</ButtonTrans>
-                <ButtonSolid onClick={getInvestResult}>Simular</ButtonSolid>
-            </StyledFooter>
-        </StyledForm>
+            <StyledForm>
+                <Row>
+                    <ButtonRatio
+                        name="rendimento"
+                        options={['bruto', 'líquido']}
+                        info="O rendimento bruto são os ganhos totais da aplicação, enquanto que o rendimento líquido é esse montante menos as taxas e impostos sobre ele."
+                    ></ButtonRatio>
+                    <ButtonRatio
+                        name="tipo-de-indexação"
+                        options={['PRÉ', 'POS', 'FIXADO']}
+                        info="Num rendimento prefixado o retorno já é conhecido, no pos depende de uma variavel."
+                    ></ButtonRatio>
+                </Row>
+                <Row>
+                    <InputField label="Aporte Inicial" prefix="R$" type="number" errorMsg="Aporte deve ser um numero"></InputField>
+                    <InputField label="Aporte Mensal" prefix="R$" type="number" errorMsg="Aporte deve ser um numero"></InputField>
+                </Row>
+                <Row>
+                    <InputField label="Prazo (em meses)"></InputField>
+                    <InputField label="Rentabilidade"></InputField>
+                </Row>
+                <Row>
+                    <InputField label="IPCA (ao ano)" value={indicators[0]}></InputField>
+                    <InputField label="CDI (ao ano)" value={indicators[1]}></InputField>
+                </Row>
+                <StyledFooter>
+                    <ButtonTrans>Limpar campos</ButtonTrans>
+                    <ButtonSolid onClick={getInvestResult}>Simular</ButtonSolid>
+                </StyledFooter>
+            </StyledForm>
+        </Container>
     );
 }
 
-const StyledForm = styled.form`
-box-sizing: border-box;
-    width: 100%;
+const Container = styled.div`
     display: grid;
-    grid-template-rows: 2rem repeat(4, 80px) 80px;
+    grid-template-areas: "title" "form";
+    grid-template-rows: 2rem 1fr;
+`;
+
+const StyledForm = styled.form`
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    row-gap: 1rem;
     margin-bottom: 20px;
 
     @media(max-width: 420px) {
-        grid-template-rows: 2rem repeat(4, 180px) 80px;
         row-gap: 10px;
     }
 
@@ -78,7 +86,7 @@ box-sizing: border-box;
 `;
 
 const Row = styled.div`
-width: 100%;
+// max-width: 100%;
     display: grid;
     grid-template-columns: 45% 45%;
     column-gap: 10%;
@@ -95,7 +103,6 @@ const StyledTitle = styled.h3`
 `;
 
 const StyledFooter = styled.div`
-    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
 `;
@@ -103,7 +110,7 @@ const StyledFooter = styled.div`
 const ButtonTrans = styled.button`
     box-sizing: border-box;
     width: 48%;
-    height: 100%;
+    height: 3rem;
     font-size: 1rem;
     font-weight: bold;
     border: 1px solid black;
