@@ -1,48 +1,73 @@
+import { Component } from "react";
+import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from "victory";
+import { BarController, BarElement, CategoryScale, Chart, LinearScale } from 'chart.js';
+Chart.register(BarController, CategoryScale, LinearScale, BarElement);
+
 
 export default function BarsChart(props) {
 
-    const render = props.data != undefined;
 
-    let valoresComAporte = [];
-    let valoresSemAporte = [];
-    if (render) {
-        valoresComAporte = Object
+
+    const state = {
+        labels: [],
+        datasets: [
+            {
+                label: 'Retorno',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [65, 59, 80, 81, 56]
+            }
+        ]
+    };
+
+    if (props.data != undefined) {
+        const valuesWithContribution = Object
             .values(props.data?.graficoValores.comAporte)
             .map((val, idx) => ({ month: idx, value: val }));
 
+        const valuesWithoutContribution = Object
+            .values(props.data?.graficoValores.semAporte)
+            .map((val, idx) => ({ month: idx, value: val }));
+
+        state.labels = valuesWithContribution.map(step => '' + step.month);
+
+        state.datasets = [];
+        state.datasets.push({
+            label: 'Com Aporte',
+            data: valuesWithContribution.map(step => step.value),
+            backgroundColor: 'tomato',
+        });
+        state.datasets.push({
+            label: 'Sem Aporte',
+            data: valuesWithoutContribution.map(step => step.value),
+            backgroundColor: 'black',
+        });
     }
-
-
-    console.log(props.data);
 
 
     return (
         <>
             <Container>
-                {render &&
-                    <VictoryChart
-                        domainPadding={-20}
-                    >
-                        <VictoryAxis
-                            tickValues={valoresComAporte.map(step => step.month)}
-                        />
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={x => x}
-                        />
-                        <VictoryBar
-                            data={valoresComAporte}
-                            x="month"
-                            y="value" />
-
-                    </VictoryChart>
-                }
-
+                <Bar
+                    data={state}
+                    options={{
+                        title: {
+                            display: true,
+                            text: 'Rendimento',
+                            fontSize: 20
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        barValueSpacing: 20,
+                    }}
+                />
             </Container>
         </>
     );
+
 }
 
 const Container = styled.div`

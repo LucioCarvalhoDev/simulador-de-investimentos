@@ -9,7 +9,7 @@ export default function SimuladorResults(props) {
             <Grid>
                 <StyledTitle>Resultado da Simulação</StyledTitle>
                 <Cards data={props.investmentData[0]} />
-                {/* <BarsChart data={props.investmentData[0]} /> */}
+                <BarsChart data={props.investmentData[0]} />
             </Grid>
         </>
     );
