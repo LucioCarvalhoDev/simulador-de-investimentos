@@ -9,7 +9,7 @@ export default function SimuladorResults(props) {
             <Grid>
                 <StyledTitle>Resultado da Simulação</StyledTitle>
                 <Cards data={props.investmentData[0]} />
-                <BarsChart data={props.investmentData[0]} />
+                {/* <BarsChart data={props.investmentData[0]} /> */}
             </Grid>
         </>
     );
@@ -22,7 +22,7 @@ const Grid = styled.div`
         "title"
         "cards"
         "bars";
-    grid-template-rows: 2rem 2fr 3fr;
+    grid-template-rows: 2rem 165px 1fr;
     row-gap: 5px;
 `;
 

@@ -29,4 +29,7 @@ const StyledSpan = styled.span`
     color: ${props => props.color || "black"};
     text-align: center;
     font-size: .9rem;
+    &:before {
+        content: "${props => props.prefix || ''}"
+    }
 `;

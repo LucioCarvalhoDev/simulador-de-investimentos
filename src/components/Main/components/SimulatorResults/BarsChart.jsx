@@ -1,28 +1,45 @@
 import styled from "styled-components";
-import { Chart } from 'chart.js';
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from "victory";
 
 export default function BarsChart(props) {
+
+    const render = props.data != undefined;
+
+    let valoresComAporte = [];
+    let valoresSemAporte = [];
+    if (render) {
+        valoresComAporte = Object
+            .values(props.data?.graficoValores.comAporte)
+            .map((val, idx) => ({ month: idx, value: val }));
+
+    }
+
+
     console.log(props.data);
 
-    const data1 = props.data?.graficoValores?.comAporte;
-    const data2 = props.data?.graficoValores?.semAporte;
-
-    // if (props.data != undefined) {
-    //     const ctx = document.getElementById('myChart')?.getContext('2d');
-    //     const q = new Chart(ctx, {
-    //         type: 'bar',
-    //         data: {
-    //             datasets: [{
-    //                 data: data1
-    //             }]
-    //         }
-    //     });
-    // }
 
     return (
         <>
             <Container>
-                <StyledCanvas id="myChart"></StyledCanvas>
+                {render &&
+                    <VictoryChart
+                        domainPadding={-20}
+                    >
+                        <VictoryAxis
+                            tickValues={valoresComAporte.map(step => step.month)}
+                        />
+                        <VictoryAxis
+                            dependentAxis
+                            tickFormat={x => x}
+                        />
+                        <VictoryBar
+                            data={valoresComAporte}
+                            x="month"
+                            y="value" />
+
+                    </VictoryChart>
+                }
+
             </Container>
         </>
     );

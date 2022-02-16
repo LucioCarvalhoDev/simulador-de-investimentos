@@ -6,12 +6,12 @@ export default function (props) {
     return (
         <>
             <Container>
-                <Card title="Valor final Bruto" value={props.data?.valorFinalBruto} />
+                <Card title="Valor final Bruto" prefix="R$" value={props.data?.valorFinalBruto} />
                 <Card title="Aliquota do IR" value={props.data?.aliquotaIR} />
-                <Card title="Valor Pago em IR" value={props.data?.valorPagoIR} />
-                <Card title="Valor Final Líquido" value={props.data?.valorFinalLiquido} />
-                <Card title="Valor Total Investido" value={props.data?.valorTotalInvestido} />
-                <Card title="Ganho Líquido" value={props.data?.ganhoLiquido} />
+                <Card title="Valor Pago em IR" prefix="R$" value={props.data?.valorPagoIR} />
+                <Card title="Valor Final Líquido" prefix="R$" value={props.data?.valorFinalLiquido} />
+                <Card title="Valor Total Investido" prefix="R$" value={props.data?.valorTotalInvestido} />
+                <Card title="Ganho Líquido" prefix="R$" value={props.data?.ganhoLiquido} />
             </Container>
         </>
     );
