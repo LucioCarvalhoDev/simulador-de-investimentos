@@ -3,9 +3,9 @@ import Main from './components/Main/Main.jsx';
 
 export default function App() {
   return (
-    <div className="App">
+    <>
       <Header />
       <Main />
-    </div>
+    </>
   );
 }

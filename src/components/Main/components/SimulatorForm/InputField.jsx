@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-// validações para cada tipo escalaveis
+// ['type of input', validationFunction]
 const VALIDATIONS = new Map([
     [undefined, () => true],
     ['number', (value) => !isNaN(Number(value))]
@@ -22,8 +22,6 @@ export default function InputField(props) {
     const inputId = props.label.replaceAll(' ', '-');
 
     return (
-
-
         <Field isValid={isValid}>
             <Label
                 htmlFor={inputId}
@@ -72,6 +70,7 @@ const InputArea = styled.div`
         border: none;
         outline: none;
         margin-left: 5px;
+        width: 100%;
     }
 `;
 

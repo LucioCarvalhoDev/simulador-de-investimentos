@@ -5,6 +5,26 @@ export default function ButtonRatio(props) {
 
     const [activeRatio, setActiveRatio] = useState(0);
 
+    const options = props.options.map((option, key) => {
+        const iptId = 'ipt-ratio-' + props.name + option;
+        const isActive = key === activeRatio;
+        return (
+            <Option key={key} isActive={isActive} idx={key}>
+                <Input
+                    type="radio"
+                    id={iptId}
+                    name={props.name}
+                    onChange={() => setActiveRatio(key)}
+                />
+                <StyledLabel htmlFor={iptId}>
+                    <Icon isActive={isActive}></Icon>
+                    <span>{option}</span>
+                </StyledLabel>
+            </Option>
+        );
+    });
+
+
     return (
         <Container>
             <TitleArea>
@@ -12,24 +32,7 @@ export default function ButtonRatio(props) {
                 <InfoBox><span>i</span><Info>{props.info}</Info></InfoBox>
             </TitleArea>
             <OptionsArea>
-                {props.options.map((option, key) => {
-                    const iptId = 'ipt-ratio-' + props.name + option;
-                    const isActive = key === activeRatio;
-                    return (
-                        <Option key={key} isActive={isActive} idx={key}>
-                            <Input
-                                type="radio"
-                                id={iptId}
-                                name={props.name}
-                                onChange={(e) => { setActiveRatio(key); }}
-                            />
-                            <StyledLabel htmlFor={iptId}>
-                                <Icon isActive={isActive}></Icon>
-                                <span>{option}</span>
-                            </StyledLabel>
-                        </Option>
-                    );
-                })}
+                {options}
             </OptionsArea>
         </Container>
     );
@@ -45,10 +48,11 @@ const TitleArea = styled.div`
 `;
 
 const Title = styled.h6`
+    color: #000000aa;
+    
     &:first-letter {
         text-transform: capitalize;
-    }
-    color: #000000aa;
+    }   
 `;
 
 const InfoBox = styled.div`
@@ -65,43 +69,44 @@ const InfoBox = styled.div`
     &:hover {
         cursor: pointer;
     }
-
-    &:hover > div {
-        display: block;
-
-    }
 `;
 
 const Info = styled.div`
     background: #fdfdfd;
-    padding: 1rem;
     border-radius: 1rem;
     display: none;
+    box-shadow: 
+        1px 1px 1px #00000050,
+        2px 2px 2px #00000050,
+        4px 4px 4px #00000050;
+    padding: 1rem;
     position: absolute;
-    left: 1.5rem;
+    transform: translateX(-85%);
     width: 10rem;
-    background: $fdfdfd;
     z-index: 2;
-    white-space: pre-line;
     text-align: left;
+
+    ${InfoBox}:hover & {
+        display: block;
+    }
 `;
 
 const OptionsArea = styled.div`
-    border: 1px solid black;
-    border-radius: 10px;
     display: flex;
     justify-content: space-around;
+    border: 1px solid black;
+    border-radius: 10px;
     overflow: hidden;
 `;
 
 const Option = styled.div`
-    color: ${props => props.isActive ? 'white' : 'black'};
+    display: flex;
     background-color: ${props => props.isActive ? "#ed8e53" : "transparent"};
+    color: ${props => props.isActive ? 'white' : 'black'};
     border-left: ${props => props.idx !== 0 ? '1px solid black' : 'none'};
     text-align: center;
     width: 100%;
     transition: background-color 500ms;
-    display: flex;
 `;
 
 const Input = styled.input`
@@ -115,10 +120,13 @@ const StyledLabel = styled.label`
     align-items: center;
     text-transform: capitalize;
     text-align: center;
-    padding: 1rem .1rem;
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    padding: 1rem .1rem;
+    
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const Icon = styled.span`

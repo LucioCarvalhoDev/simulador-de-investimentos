@@ -82,7 +82,6 @@ const StyledForm = styled.form`
 `;
 
 const Row = styled.div`
-// max-width: 100%;
     display: grid;
     grid-template-columns: 45% 45%;
     column-gap: 10%;
