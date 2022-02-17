@@ -32,4 +32,4 @@ Decidi desenvolver usando **react** e **styled-components** para poder escrever 
 
 ## Documentação
 
-[JSdoc](./docs)
+[JSdoc](https://luciocarvalhodev.github.io/simulador-de-investimentos/)
