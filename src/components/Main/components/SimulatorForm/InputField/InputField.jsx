@@ -3,18 +3,37 @@ import styled from "styled-components";
 
 // ['type of input', validationFunction]
 const VALIDATIONS = new Map([
+    ['custom', (value, props) => props.validation(value)],
     [undefined, () => true],
     ['number', (value) => !isNaN(Number(value))]
 ]);
 
-export default function InputField(props) {
+
+/** 
+ * Input extensivel com label, suporte para validação e mensagens de erro.
+ * @component
+ * @example
+ * <InputField 
+ *      label="Valor do Imovel" 
+ *      type="number" 
+ *      prefix="R$"
+ *      errorMsg="Valor do imovel deve um numero"/>
+ * @example
+ *  <InputField 
+ *      label="Idade" 
+ *      type="custom" 
+ *      validation={value => /[0-9]{1,3}/.test(value)} 
+ *      errorMsg="Insira uma idade valida"/>
+ * 
+ */
+function InputField(props) {
 
     const [isValid, setIsValid] = useState(true);
 
     const validate = (e) => {
         const content = e.target.value;
 
-        const newIsValid = VALIDATIONS.get(props.type)(content);
+        const newIsValid = VALIDATIONS.get(props.type)(content, props);
         setIsValid(newIsValid);
 
     };
@@ -40,6 +59,8 @@ export default function InputField(props) {
         </Field>
     );
 }
+
+export default InputField;
 
 const Field = styled.div`
     width: 100%;

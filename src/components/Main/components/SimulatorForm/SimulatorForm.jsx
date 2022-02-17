@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import ButtonRatio from "./ButtonRatio.jsx";
-import InputField from "./InputField.jsx";
+import ButtonRadio from "./ButtonRadio/ButtonRadio.jsx";
+import InputField from "./InputField/InputField.jsx";
 
 
 export default function SimulatorForm(props) {
@@ -34,16 +34,16 @@ export default function SimulatorForm(props) {
             <StyledTitle>Simulador</StyledTitle>
             <StyledForm>
                 <Row>
-                    <ButtonRatio
+                    <ButtonRadio
                         name="rendimento"
                         options={['bruto', 'líquido']}
                         info="O rendimento bruto são os ganhos totais da aplicação, enquanto que o rendimento líquido é esse montante menos as taxas e impostos sobre ele."
-                    ></ButtonRatio>
-                    <ButtonRatio
+                    ></ButtonRadio>
+                    <ButtonRadio
                         name="tipo-de-indexação"
                         options={['PRÉ', 'POS', 'FIXADO']}
                         info="Num rendimento prefixado o retorno já é conhecido, no pos depende de uma variavel."
-                    ></ButtonRatio>
+                    ></ButtonRadio>
                 </Row>
                 <Row>
                     <InputField label="Aporte Inicial" prefix="R$" type="number" errorMsg="Aporte deve ser um numero"></InputField>

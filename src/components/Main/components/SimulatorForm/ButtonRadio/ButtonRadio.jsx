@@ -1,7 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function ButtonRatio(props) {
+/**
+ * Input radio flexivel e animado
+ * @component
+ * @example
+ * <ButtonRadio 
+ *      name="Cor favorita"
+ *      options={['vermelho', 'violeta', 'dourado']}
+ *      info="Qual a melhor cor" />
+ */
+function ButtonRadio(props) {
 
     const [activeRatio, setActiveRatio] = useState(0);
 
@@ -37,6 +46,8 @@ export default function ButtonRatio(props) {
         </Container>
     );
 }
+
+export default ButtonRadio;
 
 const Container = styled.div`
 `;

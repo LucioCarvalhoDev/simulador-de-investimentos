@@ -1,11 +1,17 @@
 {
   "name": "simulador-de-investimentos",
+  "author": {
+    "name": "Lucio Carvalho Almeida",
+    "email": "luciocarvalhodev@gmail.com",
+    "url": "https://github.com/LucioCarvalhoDev"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "better-docs": "^2.7.2",
     "build": "^0.1.4",
     "chart.js": "^3.7.1",
     "react": "^17.0.2",
@@ -19,13 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "browserslist": {
     "production": [
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-styleguidist": "^11.2.0"
   }
 }

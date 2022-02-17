@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Card(props) {
+function Card(props) {
     return (
         <Container>
             <Title>{props.title || ''}</Title>
@@ -8,6 +8,8 @@ export default function Card(props) {
         </Container>
     );
 }
+
+export default Card;
 
 const Container = styled.section`
     box-sizing: border-box;
