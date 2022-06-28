@@ -8,7 +8,7 @@ Clone o repositorio, execute `npm install` e `npm start`. O projeto será inicia
 
 Para poder realizar o GET dos dados é necessario instalar a API, cujas instruções estão no [modelo](https://github.com/eqi-investimentos/desafio-frontend).
 
-Também é possivel acessar a versão [online](unruffled-mccarthy-f8f745.netlify.app/), que tambem depende da API rodando localmente.
+Também é possivel acessar a versão [online](https://unruffled-mccarthy-f8f745.netlify.app/), que tambem depende da API rodando localmente.
 
 ## Sobre
 
